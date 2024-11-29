@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить отзыв</title>
+</head>
+<body>
+    <h1>Добавить отзыв для {{ device.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>Автор:</label>
+            <input type="text" name="author" required>
+        </p>
+        <p>
+            <label>Отзыв:</label>
+            <textarea name="content" required></textarea>
+        </p>
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

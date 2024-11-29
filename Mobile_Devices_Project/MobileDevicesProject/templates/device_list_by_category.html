@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список устройств</title>
+</head>
+<body>
+    <h1>Список устройств</h1>
+    <form method="get">
+        <select name="category" onchange="this.form.submit()">
+            <option value="">Все категории</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <ul>
+        {% for device in devices %}
+        <li>
+            <h2>{{ device.name }}</h2>
+            <p>Категория: {{ device.category.name }}</p>
+            <p>Цена: ${{ device.price }}</p>
+            <a href="{% url 'device_detail' device.id %}">Подробнее</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

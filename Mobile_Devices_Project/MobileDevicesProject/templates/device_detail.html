@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ device.name }}</title>
+</head>
+<body>
+    <h1>{{ device.name }}</h1>
+    <p>Производитель: {{ device.manufacturer }}</p>
+    <p>Цена: ${{ device.price }}</p>
+    <p>Дата выпуска: {{ device.release_date }}</p>
+    <p>Категория: {{ device.category.name }}</p>
+    <h2>Особенности:</h2>
+    <ul>
+        {% for feature in device.features.all %}
+        <li>{{ feature.name }}</li>
+        {% endfor %}
+    </ul>
+    <img src="{{ device.image.url }}" alt="{{ device.name }}" style="max-width: 300px;">
+    <a href="{% url 'device_list' %}">Назад к списку</a>
+</body>
+</html>
+l>

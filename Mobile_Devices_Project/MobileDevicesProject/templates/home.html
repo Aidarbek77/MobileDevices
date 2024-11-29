@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <style>
+        .device-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+            text-align: center;
+        }
+        .device-card img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список устройств</h1>
+    <a href="{% url 'device_add' %}">Добавить новое устройство</a>
+    <div>
+        {% for device in devices %}
+        <div class="device-card">
+            <img src="{{ device.image.url }}" alt="{{ device.name }}">
+            <h2>{{ device.name }}</h2>
+            <p>Категория: {{ device.category.name }}</p>
+            <p>Цена: ${{ device.price }}</p>
+            <a href="{% url 'device_detail' device.id %}">Подробнее</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
